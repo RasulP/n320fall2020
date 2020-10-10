@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="">
+    <title>Page Title</title>
+    <style>
+        /* SV Shapes Styles */
+        
+        .b-rect {
+            fill: purple;
+            stroke-width: 3;
+            stroke: rgb(0, 0, 0);
+        }
+        
+        .s-rect {
+            /* color: #000; */
+            fill: rgb(64, 64, 78);
+            stroke-width: 3;
+            stroke: rgb(0, 0, 0);
+        }
+        /* Small rectangles hover animations */
+        
+        .s-rect:hover {
+            fill: rgb(26, 255, 72);
+            stroke-width: 3;
+            stroke: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Exit animations on Click for Big Rectangle-->
+    <div class="grid" onclick="rectClicked()"> The Grid
+        <svg width="100%" height="110">
+        <rect id = "big-rect" class="b-rect" width="100%" height="100" >
+      </svg>
+    </div>
+    <!-- Small gallery grid row 1 -->
+    <div class="grid" class="hover">
+        <svg class="row" width="100%" height="200">
+        <rect class="s-rect" class="hover" class="clicked" x="60%" width="300" height="150" ></rect>
+        <rect  class="s-rect" x="40%" width="300" height="150"></rect>
+        <rect class="s-rect"   x="20%" width="300" height="150"/>
+    </svg>
+        <!-- Small gallery grid row 2-->
+        <svg class="row" width="100%" height="200">
+        <rect class="s-rect"  x="60%" width="300" height="150" ></rect>
+        <rect class="s-rect" x="40%" width="300" height="150" ></rect>
+        <rect class="s-rect"  x="20%" width="300" height="150"/>
+            </svg>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
