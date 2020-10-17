@@ -8,41 +8,21 @@
     <meta name="viewport" content="">
     <title>Page Title</title>
 </head>
-<style>
-    .clickRed {
-        fill: red;
-    }
-</style>
 
 <body>
-    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 828 828">
-        <defs>
-            <style>
-            .cls-1{fill:grey;stroke:#000;stroke-miterlimit:10;stroke-width:2px;}
-            </style>
-        </defs>
-        
-        <rect 
-        
-        class="cls-1" 
-        x="1" 
-        y="1" 
-        width="275.33"
-        height="275.33"/>
-        <rect class="cls-1" x="276.33" y="1" width="275.33" height="275.33"/>
-        <rect class="cls-1" x="551.67" y="1" width="275.33" height="275.33"/>
-        <rect class="cls-1" x="1" y="276.33" width="275.33" height="275.33"/>
-        <rect class="cls-1" x="276.33" y="276.33" width="275.33" height="275.33"/>
-        <rect class="cls-1" x="551.67" y="276.33" width="275.33" height="275.33"/>
-        <rect class="cls-1" x="1" y="551.67" width="275.33" height="275.33"/>
-        <rect class="cls-1" x="276.33" y="551.67"  width="275.33" height="275.33"/>
-        ><rect class="cls-1" x="551.67" y="551.67" width="275.33" height="275.33"/>
-    </svg>
-
-
-    <!-- <script src="js/app.js"></script> -->
-    <!-- <script src="js/2darrayt.js"></script> -->
-
+    <div id="app">
+        {{message}}
+        <ul>
+            <!-- <li v-for="book in books">{{book}}</li> -->
+            <book-view v-for="book in bookOne" v-bind:book="book" v-bind:key="book.id"></book-view>
+            <book-view v-if="btnStatus" v-for="book in bookTwo" v-bind:book="book" v-bind:key="book.id"></book-view>
+        </ul>
+        <button v-on:click="hideBook">Test</button>
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="clock.js"></script> -->
+    <script src="app.js"></script>
 </body>
 
 </html>
