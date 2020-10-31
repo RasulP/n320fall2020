@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="">
+    <title>Page Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="(arr, i) in grid" v-on:CLick="startEngine.checkMove(i)" class="game-view">
+            {{square.value}}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js">
+    </script>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+    </script>
+    <!-- <script src="clock.js"></script> -->
+    <script src="app.js"></script>
+    <script src="game.js"></script>
+    <script type="text/javascript">
+        let startEngine = new Game();
+        let G_vue = new Vue({
+            el: '#app ',
+            data: startEngine
+        })
+    </script>
+</body>
+
+</html>
