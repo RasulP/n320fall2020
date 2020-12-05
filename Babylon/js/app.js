@@ -45,27 +45,24 @@ function createScene() {
     camera = new BABYLON.UniversalCamera("Camera", new BABYLON.Vector3(0, 1, -5), scene);
     camera.attachControl(canvas, true);
     var spaceLight = new BABYLON.DirectionalLight("lightly", new BABYLON.Vector3(0, -2, 1), scene);
-
+    // Orb Setup
     sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: .3 }, scene);
     sphere.position = new BABYLON.Vector3(0, 4, 0);
+    sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 1.5 }, scene);
+    sphere.physicsImpostor.physicsBody.linearDamping = .6;
+    sphere.physicsImpostor.physicsBody.angularDamping = .5;
 
-    light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(1, 1, 0), scene);
-
-
-
-    // Orb Setup
+    sphere.tag = "Sphere";
+    // BallTexture and lighnting
     mat = new BABYLON.StandardMaterial("base", scene);
     mat.diffuseTexture = new BABYLON.Texture("textures/earth.png", scene); // textures 
     mat.specukarColor = new BABYLON.Color3(0.88, 0.2, 0.28); //shine control
     sphere.material = mat;
-
+    light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(1, 1, 0), scene);
     //Connon Code Physics
     var gravityVector = new BABYLON.Vector3(0, -9.81, 0);
     var physicsPlugin = new BABYLON.CannonJSPlugin();
     //Physics controls
-    sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 1.5 }, scene);
-    sphere.physicsImpostor.physicsBody.linearDamping = .6;
-    sphere.physicsImpostor.physicsBody.angularDamping = .5;
 
 
     // Ground Setup 
@@ -119,20 +116,20 @@ window.addEventListener("click", function() {
     // check wich mesh was clikced
     var pickResult = scene.pick(scene.pointerX, scene.pointerY);
     var selectedObject = pickResult.pickedMesh;
+
     if (selectedObject) {
+        if (selectedObject.tag == "sphere") {
+            // rab clcik direction 
+            var pushDir = pickResult.getNormal(true);
+            // velocity inverse
+            var forceDir = pushDir.scale(-700);
 
-        // rab clcik direction 
-        var pushDir = pickResult.getNormal(true);
 
-        // velocity inverse
-        var forceDir = pushDir.scale(-700);
-
-
-        selectedObject.physicsImpostor.applyForce(
-            forceDir,
-            selectedObject.getAbsolutePosition()
-        )
-
+            selectedObject.physicsImpostor.applyForce(
+                forceDir,
+                selectedObject.getAbsolutePosition();
+            )
+        }
         // Ball reset after  3 secs
         timeoutID = setTimeout(resetSphere, 3000);
     }
